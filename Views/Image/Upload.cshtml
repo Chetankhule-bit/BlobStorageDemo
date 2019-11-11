@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upload Image</h2>
+<br />
+
+@using (Html.BeginForm("Upload", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Photo">Photo</label>
+            <div class="col-md-10">
+                <input type="file" name="photo" />
+            </div>
+        </div>
+        <div class="form-group">
+            &nbsp;
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn" />
+            </div>
+
+        </div>
+
+    </fieldset>
+   
+}
+
+    <div class="row">
+        <div class="col-md-10">
+            <h2>Uploaded File Details</h2>
+            <div class="form-group">
+                <div>
+
+                    <a href="@Url.Action("GetExcelFile", "Image")">
+                        Download
+                        <img src="@Url.Content("~/Content/excel_icon.png")" title="Download Excel" />
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
