@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.Azure;
 
 namespace BlobStorageDemo.Controllers
 {
@@ -41,12 +42,11 @@ namespace BlobStorageDemo.Controllers
         public  string GetExcelFile()
         {
 
-            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=ckstorage271289;AccountKey=yKkX79VhvG3prDB/9iuHQ3zcfzq3vqs+Z2e8v5y1A1MH06K0AJXn1NJ5hBnTWSOm6OOfQpoOSH/Ssagyack72Q==;EndpointSuffix=core.windows.net");
-            //CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-            //CloudBlobContainer container = blobClient.GetContainerReference("democontainerblockblob");
-            //return container.GetBlobReference("HelloWorld.png");
 
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=ckstorage271289;AccountKey=yKkX79VhvG3prDB/9iuHQ3zcfzq3vqs+Z2e8v5y1A1MH06K0AJXn1NJ5hBnTWSOm6OOfQpoOSH/Ssagyack72Q==;EndpointSuffix=core.windows.net");
+
+            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=ckstorage271289;AccountKey=yKkX79VhvG3prDB/9iuHQ3zcfzq3vqs+Z2e8v5y1A1MH06K0AJXn1NJ5hBnTWSOm6OOfQpoOSH/Ssagyack72Q==;EndpointSuffix=core.windows.net");
+           CloudStorageAccount storageAccount = CloudStorageAccount.Parse( CloudConfigurationManager.GetSetting("StorageConnectionSting"));
+
             CloudBlobClient cloudBlobClient = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer cloudBlobContainer = cloudBlobClient.GetContainerReference("democontainerblockblob");
             CloudBlockBlob blob = cloudBlobContainer.GetBlockBlobReference("HelloWorld.png");
